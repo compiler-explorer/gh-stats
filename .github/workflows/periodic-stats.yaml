@@ -23,4 +23,4 @@ jobs:
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Apply php-cs-fixer changes
+          commit_message: Automatic checkin of latest stats
