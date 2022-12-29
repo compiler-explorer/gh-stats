@@ -51,7 +51,7 @@ def stats(ctx: Context, output: typing.TextIO, organization: str, project: str) 
         forks_count=repo.forks_count,
     )
     json.dump(result, output)
-    result.write("\n")
+    output.write("\n")
 
 
 if __name__ == "__main__":
