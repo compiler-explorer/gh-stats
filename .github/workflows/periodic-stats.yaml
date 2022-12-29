@@ -1,0 +1,24 @@
+name: Periodic stats
+
+on:
+  push:  # for now
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        python-version:
+          - '3.10'
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: make deps
+      - name: Update stats
+        run: .poetry/bin/poetry run python main.py --access-token ${{ secrets.GITHUB_TOKEN }} stats stats/compiler-explorer.json
+      - name: Test
+        run: ls -l stats
